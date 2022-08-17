@@ -1,5 +1,4 @@
 window.onload = function() {
-
     document.getElementById('input-name').focus();
 
     document.getElementById('form').addEventListener('submit', e => {
@@ -53,6 +52,29 @@ window.onload = function() {
         document.getElementById('btn-reset').click();
         document.getElementById('input-name').focus();
     });
+}
+
+function loadPayer() {
+    let payerListString = document.getElementById('input-payer').value;
+    let payerList = [];
+    for (let i = 0; i < payerListString.length; i++) {
+        payerList.push(payerListString[i]);
+    }
+    let span = document.getElementById('span-payer');
+    let p = document.getElementById('p-payer');
+    span.innerHTML = "均摊人：";
+    p.innerHTML = "";
+    for (let i = 0; i < payerList.length; i++) {
+        span.innerHTML += '<input id="input-payer-' + payerList[i] + '" name="payer" type="checkbox" value="' + payerList[i] + 
+                          '" checked /><label for="input-payer-' + payerList[i] + '">' + payerList[i] + '</label>';
+        if (i == payerList.length - 1) {
+            p.innerHTML += payerList[i] + ': <span id="outcome-' + payerList[i] + '">0.00</span>';
+        } else {
+            p.innerHTML += payerList[i] + ': <span id="outcome-' + payerList[i] + '">0.00</span>&emsp;&emsp;';
+        }
+    }
+    
+    
 }
 
 function delLastRow() {

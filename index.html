@@ -6,19 +6,25 @@
         <script src="javascript.js"></script>
     </head>
     <body>
+        <div>
+            <span>所有均摊人代号：</span>
+            <input id="input-payer" type="text" placeholder="ACKJ" value="ACKJ" />
+            <button id="btn-payer" type="button" onclick="loadPayer()">确定</button>
+        </div>
+        <br />
         <form id="form">
             <div>
                 <span>名称：</span><input id="input-name" type="text" />&emsp;
                 <span>单价：</span><input id="input-price" type="text" />&emsp;
-                <span>均摊人：</span><input id="input-payer-A" name="payer" type="checkbox" value="A" checked /><label for="input-payer-A">A</label>
-                <input id="input-payer-C" name="payer" type="checkbox" value="C" checked /><label for="input-payer-C">C</label>
-                <input id="input-payer-K" name="payer" type="checkbox" value="K" checked /><label for="input-payer-K">K</label>
-                <input id="input-payer-J" name="payer" type="checkbox" value="J" checked /><label for="input-payer-J">J</label>
-                <input id="input-payer-M" name="payer" type="checkbox" value="M" checked /><label for="input-payer-M">M</label>
-                <input id="input-payer-W" name="payer" type="checkbox" value="W" checked /><label for="input-payer-W">W</label>&emsp;
                 <span>数量：</span><input id="input-quantity" type="text" value="1" />&emsp;
                 <span>加税？</span><input id="input-taxable" name="tax" type="radio" /><label for="input-taxable">是</label>
                 <input id="input-nontaxable" name="tax" type="radio" checked /><label for="input-nontaxable">否</label>&emsp;
+                <span id="span-payer">均摊人：
+                    <input id="input-payer-A" name="payer" type="checkbox" value="A" checked /><label for="input-payer-A">A</label>
+                    <input id="input-payer-C" name="payer" type="checkbox" value="C" checked /><label for="input-payer-C">C</label>
+                    <input id="input-payer-K" name="payer" type="checkbox" value="K" checked /><label for="input-payer-K">K</label>
+                    <input id="input-payer-J" name="payer" type="checkbox" value="J" checked /><label for="input-payer-J">J</label>
+                </span>&emsp;
                 <span>附加费：</span><input id="input-addon" type="text" value="0" />&emsp;
                 <span>折扣：</span><input id="input-discount" type="text" value="0" />
             </div>
@@ -26,17 +32,16 @@
             <div>
                 <button id="btn-submit" type="submit">提交</button>&emsp;
                 <button id="btn-reset" type="reset">重置</button>&emsp;
-                <button id="btn-delete" type="button" onclick="delLastRow()">删除最新的一条数据</button>
+                <button id="btn-delete" type="button" onclick="delLastRow()">删除最后一条数据</button>
             </div>
         </form>
         <div>
-            <p>
+            <p id="p-payer">
                 A: <span id="outcome-A">0.00</span>&emsp;&emsp;
                 C: <span id="outcome-C">0.00</span>&emsp;&emsp;
                 K: <span id="outcome-K">0.00</span>&emsp;&emsp;
-                J: <span id="outcome-J">0.00</span>&emsp;&emsp;
-                M: <span id="outcome-M">0.00</span>&emsp;&emsp;
-                W: <span id="outcome-W">0.00</span></p>
+                J: <span id="outcome-J">0.00</span>
+            </p>
         </div>
         <div>
             <table id="table">
