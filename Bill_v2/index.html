@@ -9,51 +9,32 @@
     <body>
         <div>
             <span>所有参与人代号：</span>
-            <input id="input-payer" type="text" placeholder="ACKJ" value="ACKJ" />
-            <button id="btn-payer" type="button" onclick="loadPayer()">确定</button>
+            <input id="input-payer" type="text" value="ACJXY" />
+            <button id="btn-payer" type="button" onclick="loadParticipants()">确定</button>
         </div>
         <br />
         <form id="form">
             <div>
                 <span>名称：</span><input id="input-name" type="text" />&emsp;
-                <span>金额：</span><input id="input-price" type="text" />&emsp;
-                <span id="span-payee">收款人：
-                    <input id="input-payee-A" name="payee" type="checkbox" value="A" /><label for="input-payee-A">A</label>
-                    <input id="input-payee-C" name="payee" type="checkbox" value="C" /><label for="input-payee-C">C</label>
-                    <input id="input-payee-K" name="payee" type="checkbox" value="K" /><label for="input-payee-K">K</label>
-                    <input id="input-payee-J" name="payee" type="checkbox" value="J" /><label for="input-payee-J">J</label>
-                </span>&emsp;
-                <span id="span-payer">付款人：
-                    <input id="input-payer-A" name="payer" type="checkbox" value="A" checked /><label for="input-payer-A">A</label>
-                    <input id="input-payer-C" name="payer" type="checkbox" value="C" checked /><label for="input-payer-C">C</label>
-                    <input id="input-payer-K" name="payer" type="checkbox" value="K" checked /><label for="input-payer-K">K</label>
-                    <input id="input-payer-J" name="payer" type="checkbox" value="J" checked /><label for="input-payer-J">J</label>
-                </span>&emsp;
-            </div>
-            <hr />
-            <div>
+                <span>金额：</span><input id="input-payment" type="text" />&emsp;
+                <span id="span-payee"></span>&emsp;
+                <span id="span-payer"></span>&emsp;
                 <button id="btn-submit" type="submit">增加记录</button>&emsp;
-                <button id="btn-delete" type="button" onclick="delLastRow()">删除最后一条记录</button>
+                <button id="btn-reset" type="reset">重置输入框内容</button>&emsp;
             </div>
         </form>
-        <div>
-            <p id="p-payer">
-                A: <span id="outcome-A">0.00</span>&emsp;&emsp;
-                C: <span id="outcome-C">0.00</span>&emsp;&emsp;
-                K: <span id="outcome-K">0.00</span>&emsp;&emsp;
-                J: <span id="outcome-J">0.00</span>
-            </p>
+        <hr />
+        <div class="div-align-center">
+            <table id="table-outcome"></table>
         </div>
-        <div>
-            <table id="table">
+        <hr />
+        <div class="div-align-center">
+            <table id="table-detail">
                 <tr>
                     <td>收款人</td>
                     <td>付款人</td>
                     <td>名称</td>
-                    <td>单价</td>
-                    <td>数量</td>
-                    <td>税费</td>
-                    <td>总价</td>
+                    <td>金额</td>
                 </tr>
             </table>
         </div>

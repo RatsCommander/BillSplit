@@ -1,8 +1,14 @@
 table {
-    width: 100%;
+    width: 75%;
     text-align: center;
 }
 
 td {
     padding: 3px 0px;
+}
+
+.div-align-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
