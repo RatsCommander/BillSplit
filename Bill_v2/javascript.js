@@ -1,4 +1,5 @@
 
+let rowNo = 1;  // unique number of each row
 let participantString;  // string of participants
 let participantArray;  // n*n matrix, represents the payment due amount between each pair of participant
 let participantNumberMap;  // map each participant with one number
@@ -87,8 +88,26 @@ function addRow2Table(e) {
         payer2Payee = paymentPerPayer / payeeList.length;
     } else {
         alert('至少需要一个收款人和一个付款人');
+        return;
     }
-    // update participant array and displayed outcome
+    updateParticipantArray(payeeList, payerList, payer2Payee);
+    // display detailed record
+    let table = document.getElementById('table-detail');
+    let row = table.insertRow(table.rows.length);
+    row.insertCell(0).innerHTML = rowNo;
+    row.insertCell(1).innerHTML = payeeList;
+    row.insertCell(2).innerHTML = payerList;
+    row.insertCell(3).innerHTML = name;
+    row.insertCell(4).innerHTML = payment.toFixed(2);
+    row.insertCell(5).innerHTML = "<button id='btn-delete-" + rowNo + "' type='button' onclick='deleteRow(event)'>删除</button>";
+    rowNo += 1;
+    // reset form
+    document.getElementById('btn-reset').click();
+    document.getElementById('input-name').focus();
+}
+
+// update participant array and display outcome
+function updateParticipantArray(payeeList, payerList, payer2Payee) {
     for (let i = 0; i < payerList.length; i++) {
         for (let j = 0; j < payeeList.length; j++) {
             let payerNo = participantNumberMap.get(payerList[i]);
@@ -110,14 +129,19 @@ function addRow2Table(e) {
             }
         }
     }
-    // display detailed record
+}
+
+// delete selected row
+function deleteRow(e) {
+    let targetRowNo = e.target.id.split('-')[2];
     let table = document.getElementById('table-detail');
-    let row = table.insertRow(table.rows.length);
-    row.insertCell(0).innerHTML = payeeList;
-    row.insertCell(1).innerHTML = payerList;
-    row.insertCell(2).innerHTML = name;
-    row.insertCell(3).innerHTML = payment.toFixed(2);
-    // reset form
-    document.getElementById('btn-reset').click();
-    document.getElementById('input-name').focus();
+    for (let i = 1; i < table.rows.length; i++) {
+        if (table.rows[i].cells[0].innerHTML == targetRowNo) {
+            let payeeList = table.rows[i].cells[1].innerHTML.split(',');
+            let payerList = table.rows[i].cells[2].innerHTML.split(',');
+            let payment = table.rows[i].cells[4].innerHTML / 1.0;
+            updateParticipantArray(payerList, payeeList, Number(payment) / (payeeList.length * payerList.length));
+            table.deleteRow(i);
+        }
+    }
 }
